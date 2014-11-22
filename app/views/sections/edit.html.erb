@@ -1,0 +1,23 @@
+<a href="/admin" class="btn btn-primary">Back to Admin Dashboard</a>
+<h2>Edit Section</h2>
+<form action="/sections/<%= @section.id %>" method="post">
+  <input name="_method" type="hidden" value="patch" />
+  <input name="id" type="hidden" value="<%= @section.id %>">
+  <div class="form-group">
+    <label class="col-sm-4">Name: </label>
+    <div class="col-sm-8">
+      <input class="form-control" type="text" name="section[name]" value="<%= @section.name %>">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4">Description: </label>
+    <div class="col-sm-8">
+      <input class="form-control" type="text" name="section[description]" value="<%= @section.description %>">
+    </div>
+  </div>
+  <input type="hidden" name="<%= request_forgery_protection_token.to_s %>" value="<%= form_authenticity_token %>">
+  <input class="btn btn-primary pull-right" type="submit" value="Update Section">
+</form>
+<div class="row">
+  <a href="/sections/<%= @section.id %>" data-method="delete" class="btn btn-danger pull-right" type="submit">Destroy Section</a>
+</div>

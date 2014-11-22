@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yummy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="row col-sm-8 col-sm-offset-2">
+    <h1>Yummy Teriyaki</h1>
+    <a class="btn btn-primary pull-right" href="#/login">Log in</a>
+    <p>(206) 281-7220</p>
+    <p>622 1st Ave. N., Seattle, WA 98109</p>
+  </div>
+  <div class="row col-sm-8 col-sm-offset-2">
+    <%= yield %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<h2>Admin section</h2>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Section Name</th>
+        <th>Item Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @sections.each do |section| %>
+      <tr>
+        <td>
+          <h4><%= section.name %></h4>
+          <p><%= section.description %></p>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a href="/sections/<%= section.id %>/edit" class="btn btn-primary">Edit Section</a></td>
+      </tr>
+      <% section.items.each do |item| %>
+        <tr>
+          <td></td>
+          <td><%= item.name %></td>
+          <td><%= item.description %></td>
+          <td><%= item.price %></td>
+          <td><a href="/items/<%= item.id %>/edit" class="btn btn-success">Edit Item</a></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
+<div class="row">
+  <form class="form-horizontal col-sm-8" action="/sections" method="post">
+    <h2>New Section</h2>
+    <div class="form-group">
+      <label class="col-sm-2" for="section[name]">Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="section[name]">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2" for="section[description]">Description</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="section[description]">
+      </div>
+    </div>
+    <input type="hidden" name="<%= request_forgery_protection_token.to_s %>" value="<%= form_authenticity_token %>">
+    <button class="btn btn-primary pull-right" type="submit">Add section</button>
+  </form>
+</div>
+
+<div class="row">
+  <form class="form-horizontal col-sm-8" action="/items" method="post">
+    <h2>New Item</h2>
+    <div class="form-group">
+      <label class="col-sm-2" for="item[name]">Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="item[name]">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2" for="item[description]">Description</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="item[description]">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2" for="item[price]">Price</label>
+      <div class="col-sm-10">
+        <input type="decimal" class="form-control" name="item[price]">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2" for="item[section_id]">Section</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="item[section_id]">
+          <% @sections.each do |section| %>
+            <option value="<%= section.id %>"><%= section.name %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <input type="hidden" name="<%= request_forgery_protection_token.to_s %>" value="<%= form_authenticity_token %>">
+    <button class="btn btn-primary pull-right" type="submit">Add section</button>
+  </form>
+</div>
